@@ -5,9 +5,14 @@ import Navbar from "react-bootstrap/Navbar";
 import { CiLogin } from "react-icons/ci";
 import { MdLibraryAdd } from "react-icons/md";
 import { ImExit } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../../JS/Actions/AuthActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function NavBar() {
+  const isAuth = useSelector((state) => state.AuthReducer.isAuth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Navbar expand="lg "style={{ backgroundColor:"rgba(151, 233, 206, 0.078)"}}>
       <Container>
@@ -29,18 +34,30 @@ function NavBar() {
             <Link className=" nav-link my-1" to="/todo">
               ToDo
             </Link>
-            <Link className="nav-btn my-1 mx-1 " to="/register">
-              <MdLibraryAdd />
-          SignUp
-            </Link>
-            <Link  to="/login"className="nav-btn my-1 mx-1">
-              <CiLogin />
-              Login
-            </Link>
-            <Link className="nav-btn my-1 mx-1"  to="/">
-              <ImExit />
-              Logout{" "}
-            </Link>
+            {isAuth ? (
+              <Link
+                className="nav-btn my-1 mx-1"
+                onClick={() => {
+                  dispatch(logout()).then(() => {
+                    navigate("/");
+                  });
+                }}
+              >
+                <ImExit />
+                Logout
+              </Link>
+            ) : (
+              <>
+                <Link className="nav-btn my-1 mx-1" to="/register">
+                  <MdLibraryAdd />
+                  SignUp
+                </Link>
+                <Link className="nav-btn my-1 mx-1" to="/login">
+                  <CiLogin />
+                  Login
+                </Link>
+              </>
+            )}
           
           </Nav>
         </Navbar.Collapse>

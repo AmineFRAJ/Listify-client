@@ -1,10 +1,13 @@
 import React from "react";
 import "./home.css";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const user = useSelector((state) => state.AuthReducer.user);
   return (
     <div className="home">
       <div className="text ">
+        <h2>Welcome <strong  >{user?.username ||"" }</strong> </h2>
         <h1>
           Organize your <br />
           work and life .

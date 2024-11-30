@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../JS/Actions/AuthActions";
 
 const Login = () => {
+  const [user, setUser] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = () => {
+    dispatch(login({ user, navigate }));
+  };
+
   return (
     <div className="login">
       <div className="container">
@@ -19,6 +34,7 @@ const Login = () => {
             <div className="d-flex flex-column">
               <label htmlFor="email">Email address: </label>
               <input
+                onChange={(e) => handleChange(e)}
                 className="p-2 mb-3"
                 type="email"
                 name="email"
@@ -26,12 +42,13 @@ const Login = () => {
               />
               <label htmlFor="email">Password: </label>
               <input
+                onChange={(e) => handleChange(e)}
                 className="p-2 mb-3"
                 type="password"
                 name="password"
                 placeholder="6 characters long"
               />
-              <button className="btn">Login</button>
+              <button className="btn"  onClick={handleLogin}>Login</button>
             </div>
           </div>
         </div>
