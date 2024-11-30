@@ -1,0 +1,20 @@
+ body {
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.home {
+  flex: 1; /* Ensures the home content stretches to fill available space */
+}
+
+footer {
+  background-color: rgba(151, 233, 206, 0.078);
+  text-align: center;
+  padding: 10px 0;
+  color: rgb(0, 0, 0);
+  position: fixed;  
+  width: 100%;
+ bottom: 0;
+  flex-shrink: 0; /* Ensures the footer stays at the bottom */
+}

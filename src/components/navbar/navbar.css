@@ -1,0 +1,55 @@
+.logo {
+  width: 40px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+.user {
+  width: 40px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+.Listify {
+  color: rgb(151, 233, 205);
+  font-family: "Brush Script MT", cursive;
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.nav-btn  {
+  background-color: rgb(151, 233, 205); 
+  border-radius: 20px; 
+  color: black;  
+  padding: 10px 20px; 
+  font-size: 1rem; 
+  cursor: pointer;  
+  border: none;  
+  transition: all 0.3s ease; 
+ text-decoration: none;;
+  max-width: fit-content;  
+  margin: 0 auto;  
+}
+
+.nav-btn:hover{
+  background-color: rgb(86, 157, 134);  
+  color: white;  
+}
+
+/* Style for the Nav.Link elements */
+.navbar-nav .nav-link {
+  font-weight: 600; /* Semi-bold */
+  color: black; /* Default text color */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for Nav.Link */
+.navbar-nav .nav-link:hover {
+  color: green; /* Change color to green */
+  text-decoration: underline; /* Add underline */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Optional: Style active links differently if needed */
+.navbar-nav .nav-link.active {
+  color: green; /* Match hover color */
+  text-decoration: underline; /* Highlight active links */
+}
+ 
