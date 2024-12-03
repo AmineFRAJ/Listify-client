@@ -4,11 +4,12 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../JS/Actions/TaskActions";
 import TodoList from "../../components/todoCard/TodoList";
+ 
 
 const Todo = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.AuthReducer.isAuth);  
-  const [newTask, setNewTask] = useState({ title: '', body: '' });
+  const isAuth = useSelector((state) => state.AuthReducer.isAuth);
+  const [newTask, setNewTask] = useState({ title: "", body: "" });
   const [isVisible, setIsVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -31,10 +32,10 @@ const Todo = () => {
       return;
     }
 
-    dispatch(addTask(newTask));  
-    setNewTask({ title: '', body: '' });  
-    setIsVisible(false);  
-    setAlertMessage("");  
+    dispatch(addTask(newTask));
+    setNewTask({ title: "", body: "" });
+    setIsVisible(false);
+    setAlertMessage("");
   };
 
   return (
@@ -49,7 +50,7 @@ const Todo = () => {
             onClick={show}
             name="title"
             value={newTask.title || ""}
-            onChange={handleChange}  
+            onChange={handleChange}
           />
           {isVisible && (
             <textarea
@@ -57,7 +58,7 @@ const Todo = () => {
               placeholder=" Description..."
               name="body"
               value={newTask.body || ""}
-              onChange={handleChange} 
+              onChange={handleChange}
             />
           )}
           <button className="btn my-3 mb-0" onClick={handleAdd}>
@@ -65,12 +66,16 @@ const Todo = () => {
           </button>
         </div>
         {alertMessage && (
-          <div className="alert alert-danger mt-3">
-            {alertMessage}
+          <div className="alert alert-danger mt-3">{alertMessage}</div>
+        )}{" "}
+        {isAuth && (
+          <div className="filter-task-container mt-4">
+           
           </div>
         )}
       </div>
-      <TodoList/>
+       
+      <TodoList />
     </div>
   );
 };
