@@ -1,6 +1,7 @@
 import React from "react";
 import "./home.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const user = useSelector((state) => state.AuthReducer.user);
@@ -20,7 +21,9 @@ const Home = () => {
           <br />
           Experience the world's most intuitive to-do app today!
         </p>
-        <button className="btn" href="#">Make Todo List</button>
+        <Link to="/todo">
+  <button className="btn">Make Todo List</button>
+</Link>
       </div>
     </div>
   );

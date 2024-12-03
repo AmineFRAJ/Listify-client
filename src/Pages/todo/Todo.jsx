@@ -3,6 +3,7 @@ import "./todo.css";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../JS/Actions/TaskActions";
+import TodoList from "../../components/todoCard/TodoList";
 
 const Todo = () => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Todo = () => {
           {isVisible && (
             <textarea
               type="text"
-              placeholder="Description..."
+              placeholder=" Description..."
               name="body"
               value={newTask.body || ""}
               onChange={handleChange} 
@@ -69,6 +70,7 @@ const Todo = () => {
           </div>
         )}
       </div>
+      <TodoList/>
     </div>
   );
 };

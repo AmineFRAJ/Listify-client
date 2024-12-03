@@ -16,7 +16,7 @@ function NavBar() {
   return (
     <Navbar expand="lg "style={{ backgroundColor:"rgba(151, 233, 206, 0.078)"}}>
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand as={Link} to="/">
           <img alt="Your Company" src="/logo.png" className="logo" />
           <b className="Listify">Listify</b>
         </Navbar.Brand>
@@ -39,7 +39,7 @@ function NavBar() {
                 className="nav-btn my-1 mx-1"
                 onClick={() => {
                   dispatch(logout()).then(() => {
-                    navigate("/");
+                    navigate(0);
                   });
                 }}
               >

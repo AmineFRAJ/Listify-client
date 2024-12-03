@@ -1,0 +1,19 @@
+.btn-done{
+    background-color:rgb(227, 205, 4);
+    border-radius: 20px; 
+    color: white;  
+    padding: 10px 20px; 
+    font-size: 1.1rem; 
+    cursor: pointer;  
+    border: none;  
+    transition: all 0.3s ease; 
+   text-decoration: none;;
+    max-width: fit-content;  
+    margin: 0 auto;  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.182);
+  }
+  
+  .btn-done:hover{
+    background-color:rgb(206, 186, 3);
+    color: white;  
+    
+  }

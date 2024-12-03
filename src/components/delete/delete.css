@@ -1,0 +1,37 @@
+.btn-delete {
+  background-color: rgb(221, 63, 63);
+  border-radius: 20px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  max-width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.182);
+}
+
+.btn-delete:hover {
+  background-color: rgb(177, 47, 47);
+  color: white;
+}
+.modal-footer {
+  display: flex;
+   
+}
+.btn-cls {
+  
+  border-radius: 20px;
+  color: rgb(103, 102, 102);
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  max-width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.182);
+}
