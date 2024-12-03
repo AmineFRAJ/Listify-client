@@ -32,7 +32,7 @@ export const getTasks = () => async (dispatch) => {
     const userId = decodedToken.id;
     console.log(decodedToken);
 
-    const response = await axios.get(`/api/lists/getTask/${userId}`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/lists/getTask/${userId}`);
     dispatch({
       type: GET_TASKS_SUCCESS,
       payload: response.data.list || [],
@@ -67,10 +67,7 @@ export const addTask = (taskData) => async (dispatch) => {
       id, // Add the decoded id
     };
     console.log(updatedTaskData);
-    const response = await axios.post(
-      "/api/lists/addTask", // Backend endpoint to add task
-      updatedTaskData // Send task data with id
-    );
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/lists/addTask`, updatedTaskData);
 
     dispatch({
       type: ADD_TASK_SUCCESS,
@@ -91,7 +88,7 @@ export const addTask = (taskData) => async (dispatch) => {
 export const deleteTaskById = (TaskId) => async (dispatch) => {
   dispatch({ type: DELETE_TASK_LOAD });
   try {
-    const result = await axios.delete(`/api/lists/deleteTask/${TaskId}`);
+    const result = await axios.delete(`${process.env.REACT_APP_API_URL}/api/lists/deleteTask/${TaskId}`);
     dispatch({ type: DELETE_TASK_SUCCESS, payload: result.data });
     dispatch(getTasks());
   } catch (error) {
@@ -99,27 +96,32 @@ export const deleteTaskById = (TaskId) => async (dispatch) => {
   }
 };
 
-//update task 
-export const editTask = ({ TaskId, newTask }) => async (dispatch) => {
-  dispatch({ type: UPDATE_TASK_LOAD });
-  try {
-    // Ajouter isDone: false par défaut si ce n'est pas dans newTask
-    const updatedTask = { ...newTask, isDone: newTask.isDone ?? false };
-    const result = await axios.put(`/api/lists/updateTask/${TaskId}`, updatedTask);
-    dispatch({ type: UPDATE_TASK_SUCCESS, payload: result.data });
-    dispatch(getTasks());
-  } catch (error) {
-    dispatch({ type: UPDATE_TASK_FAIL, payload: error });
-  }
-};
+//update task
+export const editTask =
+  ({ TaskId, newTask }) =>
+  async (dispatch) => {
+    dispatch({ type: UPDATE_TASK_LOAD });
+    try {
+      // Ajouter isDone: false par défaut si ce n'est pas dans newTask
+      const updatedTask = { ...newTask, isDone: newTask.isDone ?? false };
+      const result = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/lists/updateTask/${TaskId}`,
+        updatedTask
+      );
+      dispatch({ type: UPDATE_TASK_SUCCESS, payload: result.data });
+      dispatch(getTasks());
+    } catch (error) {
+      dispatch({ type: UPDATE_TASK_FAIL, payload: error });
+    }
+  };
 
 // done task action
-export const doneTask = (TaskId,currentStatus) => async (dispatch) => {
+export const doneTask = (TaskId, currentStatus) => async (dispatch) => {
   dispatch({ type: DONE_TASKS_LOAD });
   try {
     // Only update the isDone field to true
-    const result = await axios.put(`/api/lists/updateTask/${TaskId}`, {
-      isDone:!currentStatus,
+    const result = await axios.put(`${process.env.REACT_APP_API_URL}/api/lists/updateTask/${TaskId}`, {
+      isDone: !currentStatus,
     });
 
     dispatch({ type: DONE_TASKS_SUCCESS, payload: result.data });
