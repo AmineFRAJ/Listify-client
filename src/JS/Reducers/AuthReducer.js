@@ -1,4 +1,6 @@
 import {
+  CLEAR_ERRORS_AUTH,
+    CLEAR_SUCCESS_AUTH,
     CURRENT_USER,
   LOGIN_USER_FAIL,
   LOGIN_USER_LOAD,
@@ -62,6 +64,12 @@ const AuthReducer = (state = initialState, { type, payload }) => {
       
     case CURRENT_USER:
       return { ...state, user: payload, loadUser: false, isAuth: true };
+
+      case CLEAR_ERRORS_AUTH:
+        return { ...state, errors: null };
+  
+      case CLEAR_SUCCESS_AUTH:
+        return { ...state, success: null };
     default:
       return state;
   }

@@ -8,9 +8,14 @@ import Todo from "./Pages/todo/Todo";
 import Register from "./Pages/register/Register";
 import Login from "./Pages/Login/Login";
 import { current } from "./JS/Actions/AuthActions";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import ErrorNotification from "./components/toastNotifications/ErrorNotification";
+import SuccessNotification from "./components/toastNotifications/SuccessNotification";
+ 
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
+  const authErrors = useSelector((state) => state.AuthReducer.errors);
+  const authSuccess = useSelector((state) => state.AuthReducer.success);
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -19,6 +24,8 @@ const App = () => {
   }, [dispatch]);
   return (
     <div>
+       {authErrors && authErrors.map((el) => <ErrorNotification error={el} />)}
+       {authSuccess && authSuccess.map((el) => <SuccessNotification success={el} />)}
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

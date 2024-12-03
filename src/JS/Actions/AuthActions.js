@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  CLEAR_ERRORS_AUTH,
+    CLEAR_SUCCESS_AUTH,
     CURRENT_USER,
   LOGIN_USER_FAIL,
   LOGIN_USER_LOAD,
@@ -62,4 +64,16 @@ export const current = () => async (dispatch) => {
       console.log(error);
       dispatch({ type: LOGIN_USER_FAIL, payload: error.response.data.errors });
     }
+  };// clear errors
+  export const clearErrorsAuth = () => {
+    return {
+      type: CLEAR_ERRORS_AUTH,
+    };
+  };
+  
+  // clear success
+  export const clearSuccessAuth = () => {
+    return {
+      type: CLEAR_SUCCESS_AUTH,
+    };
   };
