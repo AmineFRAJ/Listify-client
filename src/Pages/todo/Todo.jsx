@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import "./todo.css";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../JS/Actions/TaskActions";
 import TodoList from "../../components/todoCard/TodoList";
- 
+import { Link } from "react-router-dom"; // Import Link
 
 const Todo = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,9 @@ const Todo = () => {
 
   const handleAdd = () => {
     if (!isAuth) {
-      setAlertMessage("Please sign up or log in to create a Todo list!");
+      setAlertMessage(
+        "Please sign up or log in to create a Todo list!"
+      );
       return;
     }
 
@@ -66,15 +68,26 @@ const Todo = () => {
           </button>
         </div>
         {alertMessage && (
-          <div className="alert alert-danger mt-3">{alertMessage}</div>
-        )}{" "}
-        {isAuth && (
-          <div className="filter-task-container mt-4">
-           
+          <div className="alert alert-danger mt-3">
+            {alertMessage}{" "}
+            {!isAuth && (
+              <span>
+                <Link to="/register" className="alert-link">
+                  Sign Up
+                </Link>{" "}
+                or{" "}
+                <Link to="/login" className="alert-link">
+                  Log In
+                </Link>
+              </span>
+            )}
           </div>
         )}
+        {isAuth && (
+          <div className="filter-task-container mt-4"></div>
+        )}
       </div>
-       
+
       <TodoList />
     </div>
   );
